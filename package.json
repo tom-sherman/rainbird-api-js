@@ -28,5 +28,10 @@
     "pre-commit": "^1.2.2",
     "standard": "^12.0.1",
     "tap": "^12.0.1"
-  }
+  },
+  "keywords": [
+    "rainbird",
+    "ai",
+    "api"
+  ]
 }
