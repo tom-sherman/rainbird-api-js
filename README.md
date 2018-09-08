@@ -1,4 +1,4 @@
-# rainbird-api-js
+# rainbird-api-js [![Build Status](https://travis-ci.org/tom-sherman/rainbird-api-js.svg?branch=master)](https://travis-ci.org/tom-sherman/rainbird-api-js)
 A promise-based wrapper around the [Rainbird](https://rainbird.ai/) API
 
 ## Install

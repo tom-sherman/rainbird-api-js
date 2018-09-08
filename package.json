@@ -1,15 +1,12 @@
 {
   "name": "rainbird-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Promise based wrapper for the Rainbird API.",
   "main": "./src/index.js",
   "scripts": {
     "lint": "standard **/*.js",
     "test": "npm run lint && node ./test | faucet"
   },
-  "pre-commit": [
-    "test"
-  ],
   "author": {
     "name": "Tom Sherman",
     "email": "tom.sherman@rainbird.ai"
@@ -25,7 +22,6 @@
   },
   "devDependencies": {
     "faucet": "0.0.1",
-    "pre-commit": "^1.2.2",
     "standard": "^12.0.1",
     "tap": "^12.0.1"
   },
