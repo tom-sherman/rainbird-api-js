@@ -1,6 +1,6 @@
 {
   "name": "rainbird-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Promise based wrapper for the Rainbird API.",
   "main": "./src/index.js",
   "scripts": {
