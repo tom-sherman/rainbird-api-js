@@ -35,6 +35,21 @@ await session.inject({
 })
 ```
 
+## Development
+
+Clone and install dependencies
+
+```
+git clone https://github.com/tom-sherman/rainbird-api-js
+cd rainbird-api-js
+npm install
+```
+
+You must set the following environment variables to be able to run tests:
+* `RB_API_KEY` - A valid Rainbird API key.
+* `RB_HELLOWORLD_KMID` - A "Hello World" knowledge map.
+
 ## Further reading
+
 * https://rainbirdai.github.io/rainbird-docs/
 * https://github.com/RainBirdAi

@@ -1,7 +1,5 @@
-const secret = require('../secret.json')
-
 module.exports.validApiKeys = [
-  secret.apiKey
+  process.env.RB_API_KEY
 ]
 
 module.exports.validUUIDs = [
@@ -36,7 +34,9 @@ module.exports.inValidApiKeys = [
 /**
  * @type {string[]}
  */
-module.exports.validKnowledgeMapIds = secret.maps
+module.exports.validKnowledgeMapIds = [
+  process.env.RB_HELLOWORLD_KMID
+]
 
 module.exports.inValidKnowledgeMapIds = [
   'foo',
