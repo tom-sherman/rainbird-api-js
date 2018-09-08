@@ -2,7 +2,7 @@
 A promise-based wrapper around the [Rainbird](https://rainbird.ai/) API
 
 ## Install
-Requires Node v7.10.1 or later.
+Requires Node v8.11.0 or later.
 
 ```
 npm install rainbird-api --save
