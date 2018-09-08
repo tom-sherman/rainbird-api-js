@@ -1,5 +1,5 @@
 # rainbird-api-js
-A promise-based wrapper around the Rainbird API
+A promise-based wrapper around the [Rainbird](https://rainbird.ai/) API
 
 ## Install
 ```
@@ -34,3 +34,7 @@ await session.inject({
   object: 'France'
 })
 ```
+
+## Further reading
+* https://rainbirdai.github.io/rainbird-docs/
+* https://github.com/RainBirdAi
