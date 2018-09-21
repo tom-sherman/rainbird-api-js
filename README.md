@@ -39,8 +39,11 @@ const { facts } = await session.respond({
 // Get an evidence tree object by calling audit on the answer.
 // Be aware the Session.respond can return either questions or facts.
 await facts[0].audit()
-
 ```
+
+## Notes
+`Session.response` and `Session.query` can return either questions or facts (answers)
+
 
 ## Development
 
