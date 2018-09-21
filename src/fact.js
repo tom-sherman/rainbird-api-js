@@ -2,9 +2,12 @@ const rb = require('./rainbird')
 
 class Fact {
   constructor ({ apiKey, apiDomain, sessionId, factID, ...fact }) {
+    this.apiKey = apiKey
+    if (!rb.validUuid(this.apiKey)) {
+      throw new Error('Invalid API key')
+    }
     this.data = fact
     this.id = factID
-    this.apiKey = apiKey
     this.apiDomain = apiDomain || Fact.DEFAULT_API_DOMAIN
     this.sessionId = sessionId
   }
