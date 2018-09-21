@@ -1,3 +1,4 @@
+require('dotenv').config()
 const rb = require('./src')
 
 // The following example requires a "Hello world" map ID and API key to be specified in the following env vars:

@@ -56,6 +56,8 @@ You must set the following environment variables to be able to run tests:
 * `RB_API_KEY` - A valid Rainbird API key.
 * `RB_HELLOWORLD_KMID` - A "Hello World" knowledge map.
 
+These can be placed in a `.env` file for convenience.
+
 ## Further reading
 
 * https://rainbirdai.github.io/rainbird-docs/
