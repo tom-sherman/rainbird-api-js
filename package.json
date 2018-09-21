@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "standard **/*.js",
-    "test": "npm run lint && node ./test | faucet"
+    "test": "npm run lint && node -r dotenv/config ./test | faucet"
   },
   "author": {
     "name": "Tom Sherman",
@@ -21,6 +21,7 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "faucet": "0.0.1",
     "standard": "^12.0.1",
     "tap": "^12.0.1"

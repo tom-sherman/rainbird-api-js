@@ -1,4 +1,5 @@
 const rb = require('./rainbird')
+const Fact = require('./fact')
 
 class Session {
   /**
@@ -89,11 +90,14 @@ class Session {
     if (!this.id) {
       throw new Error('Session ID is not defined. Run Session.start before querying.')
     }
-    const response = this.call({
+    const response = await this.call({
       path: `/${this.id}/query`,
       body: { subject, relationship, object }
     })
     this.currentQuery = { subject, relationship, object }
+    if (response.result) {
+      return this.createFacts(response)
+    }
     return response
   }
 
@@ -121,10 +125,14 @@ class Session {
         answer.cf = 100
       }
     }
-    return this.call({
+    const response = await this.call({
       path: `/${this.id}/response`,
       body: { answers }
     })
+    if (response.result) {
+      return this.createFacts(response)
+    }
+    return response
   }
 
   inject (facts) {
@@ -162,6 +170,22 @@ class Session {
       this.history.push(response)
     }
     return response
+  }
+
+  /**
+   * Creates Fact object from a Rainbird query response.
+   * @param {*} response
+   */
+  createFacts (response) {
+    const facts = response.result.map(fact => new Fact({
+      apiKey: this.apiKey,
+      apiDomain: this.apiDomain,
+      ...fact
+    }))
+    return {
+      facts,
+      response
+    }
   }
 
   static get DEFAULT_API_DOMAIN () {

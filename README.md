@@ -22,20 +22,27 @@ await session.query({
 })
 // > { question: { prompt: 'Where does John live?', ... } }
 
+  // Inject facts
+  await session.inject({
+    subject: 'Sam',
+    relationship: 'lives in',
+    object: 'France'
+  })
+
 // Respond with a fact
-await session.respond({
+const { facts } = await session.respond({
   subject: 'John',
   relationship: 'lives in',
   object: 'England'
 })
 
-// Inject facts
-await session.inject({
-  subject: 'Sam',
-  relationship: 'lives in',
-  object: 'France'
-})
+// Get an evidence tree object by calling audit on the answer.
+await facts[0].audit()
 ```
+
+## Notes
+`Session.response` and `Session.query` can return either questions or facts (answers)
+
 
 ## Development
 
@@ -50,6 +57,8 @@ npm install
 You must set the following environment variables to be able to run tests:
 * `RB_API_KEY` - A valid Rainbird API key.
 * `RB_HELLOWORLD_KMID` - A "Hello World" knowledge map.
+
+These can be placed in a `.env` file for convenience.
 
 ## Further reading
 
