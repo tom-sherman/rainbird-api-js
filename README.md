@@ -22,19 +22,24 @@ await session.query({
 })
 // > { question: { prompt: 'Where does John live?', ... } }
 
+  // Inject facts
+  await session.inject({
+    subject: 'Sam',
+    relationship: 'lives in',
+    object: 'France'
+  })
+
 // Respond with a fact
-await session.respond({
+const { facts } = await session.respond({
   subject: 'John',
   relationship: 'lives in',
   object: 'England'
 })
 
-// Inject facts
-await session.inject({
-  subject: 'Sam',
-  relationship: 'lives in',
-  object: 'France'
-})
+// Get an evidence tree object by calling audit on the answer.
+// Be aware the Session.respond can return either questions or facts.
+await facts[0].audit()
+
 ```
 
 ## Development

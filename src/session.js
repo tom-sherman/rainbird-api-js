@@ -1,4 +1,5 @@
 const rb = require('./rainbird')
+const Fact = require('./fact')
 
 class Session {
   /**
@@ -121,10 +122,21 @@ class Session {
         answer.cf = 100
       }
     }
-    return this.call({
+    const response = await this.call({
       path: `/${this.id}/response`,
       body: { answers }
     })
+    if (response.question) {
+      return response
+    }
+    if (!response.result) {
+      throw new Error('Result error!')
+    }
+    const facts = response.result.map(fact => new Fact(fact))
+    return {
+      facts,
+      response
+    }
   }
 
   inject (facts) {
