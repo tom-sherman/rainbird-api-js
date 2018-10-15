@@ -22,12 +22,12 @@ await session.query({
 })
 // > { question: { prompt: 'Where does John live?', ... } }
 
-  // Inject facts
-  await session.inject({
-    subject: 'Sam',
-    relationship: 'lives in',
-    object: 'France'
-  })
+// Inject facts
+await session.inject({
+  subject: 'Sam',
+  relationship: 'lives in',
+  object: 'France'
+})
 
 // Respond with a fact
 const { facts } = await session.respond({
