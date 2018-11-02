@@ -59,6 +59,7 @@ const call = async ({ apiKey, body, path, qs, method = 'POST', apiDomain = API_D
   } catch (err) {
     try {
       err.message = JSON.parse(err.error).err[0]
+      throw (err)
     } catch (_) {
       throw (err)
     }
