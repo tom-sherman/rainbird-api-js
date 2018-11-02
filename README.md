@@ -40,6 +40,17 @@ const { facts } = await session.respond({
 await facts[0].audit()
 ```
 
+### Context
+
+Context is supported but supplying a `contextId` option when creating a new `Session` eg.
+
+```javascript
+const session = new rb.Session({
+  apiKey: API_KEY,
+  contextId: '123'
+})
+```
+
 ## Notes
 `Session.response` and `Session.query` can return either questions or facts (answers)
 
