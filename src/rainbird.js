@@ -46,6 +46,7 @@ const call = async ({ apiKey, body, path, qs, method = 'POST', apiDomain = API_D
     auth: { user: apiKey },
     method,
     headers: { 'Content-Type': 'application/json' },
+    qs,
     ...options
   }
 
