@@ -4,6 +4,10 @@ const Fact = require('./fact')
 class Session {
   /**
    * Creates a new Session.
+   * @param {object|string} options
+   * @param {string} options.apiKey
+   * @param {string} options.apiDomain
+   * @param {string} options.contextId
    */
   constructor (options) {
     if (typeof options === 'string') {
@@ -20,6 +24,12 @@ class Session {
      * @type {string}
      */
     this.apiDomain = options.apiDomain || Session.DEFAULT_API_DOMAIN
+
+    /**
+     * Context ID to use for the session.
+     * @type {string}
+     */
+    this.contextId = options.contextId
 
     /**
      * The session ID returned from the /start method.
@@ -68,10 +78,18 @@ class Session {
     }
 
     this.kmId = kmId
-    const session = await this.call({
+
+    const startOptions = {
       path: '/start/' + this.kmId,
       method: 'GET'
-    })
+    }
+
+    if (this.contextId) {
+      startOptions.qs = { contextid: this.contextId }
+    }
+
+    const session = await this.call(startOptions)
+
     this.id = session.id
     // Clear history
     this.history.length = 0

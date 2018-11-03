@@ -2,6 +2,10 @@ const t = require('tap')
 const rb = require('../src/rainbird')
 const fixtures = require('./fixtures')
 
+if (!process.env.RB_API_KEY || !process.env.RB_HELLOWORLD_KMID) {
+  t.fail('Must setup environment variables RB_API_KEY and RB_HELLOWORLD_KMID for tests to pass')
+}
+
 t.test('rainbird::constants return strings', t => {
   const constants = [ rb.API_DOMAIN, rb.API_SOURCE ]
   constants.forEach(constant => {
