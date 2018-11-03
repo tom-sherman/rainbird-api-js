@@ -83,9 +83,12 @@ t.test('session should remember context', async t => {
   const queryResponse2 = await session2.query(query)
 
   if (queryResponse2.question) {
-    t.fail()
+    t.fail('Question should not be asked, fact should be retrieved from context.')
   }
 
-  t.equal(queryResponse1.facts[0].data.object, queryResponse2.facts[0].data.object)
+  t.ok(queryResponse1.facts.length && queryResponse1.facts.length > 0, "Query1 didn't returned facts")
+  t.ok(queryResponse2.facts.length && queryResponse1.facts.length > 0, "Query2 didn't returned facts")
+
+  t.equal(queryResponse1.facts[0].data.object, queryResponse2.facts[0].data.object, 'Facts dont match')
   t.end()
 })
