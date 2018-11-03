@@ -2,6 +2,10 @@ const t = require('tap')
 const Session = require('../src/session')
 const fixtures = require('./fixtures')
 
+if (!process.env.RB_API_KEY || !process.env.RB_HELLOWORLD_KMID) {
+  t.fail('Must setup environment variables RB_API_KEY and RB_HELLOWORLD_KMID for tests to pass')
+}
+
 t.test('session::can pass valid string keys', t => {
   const validApiKeys = [
     ...fixtures.validApiKeys,
