@@ -104,13 +104,13 @@ class Session {
    * @param {string} options.relationship
    * @param {string} options.object
    */
-  async query ({ subject, relationship, object } = {}) {
+  async query ({ subject, relationship, object, ...rest } = {}) {
     if (!this.id) {
       throw new Error('Session ID is not defined. Run Session.start before querying.')
     }
     const response = await this.call({
       path: `/${this.id}/query`,
-      body: { subject, relationship, object }
+      body: { subject, relationship, object, ...rest }
     })
     this.currentQuery = { subject, relationship, object }
     if (response.result) {
