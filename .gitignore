@@ -38,3 +38,5 @@ jspm_packages/
 
 # Secret Api Key
 secret.json
+
+dist
