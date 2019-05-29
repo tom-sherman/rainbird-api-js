@@ -1,4 +1,5 @@
 import "babel-polyfill"
+// TODO: Once the typescript version is published, install as dep from npm.
 import Client from '../lib'
 
 const domReady = async () =>

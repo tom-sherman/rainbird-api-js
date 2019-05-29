@@ -2,8 +2,7 @@
 
 A JS/browser example which simply starts a Rainbird session and logs it to the document.
 
-You can use Parcel to build and view the example in your browser
+Make sure you create a `.env` file with `RB_API_KEY` and `RB_HELLOWORLD_KMID` included. You can see an example of one of these in `.env.example`.
 
-```
-npx parcel index.html
-```
+1. `npm install`
+2. `npm start`

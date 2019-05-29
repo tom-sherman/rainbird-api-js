@@ -1,0 +1,13 @@
+{
+  "name": "rainbird-api-js-example",
+  "version": "1.0.0",
+  "description": "A JS/browser example which simply starts a Rainbird session and logs it to the document.",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "Tom Sherman <the.tomsherman@gmail.com> (https://tom-sherman.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^1.12.3"
+  }
+}

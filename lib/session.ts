@@ -57,16 +57,7 @@ export class Session {
       throw new Error('TODO: handle error')
     }
 
-    // Set the kind property so that it is easier to distinguish the response types.
-    if (typeof (response.result as ResultResponse).result !== 'undefined') {
-      response.result.kind = 'result'
-    } else if (
-      typeof (response.result as QuestionResponse).question !== 'undefined'
-    ) {
-      response.result.kind = 'question'
-    }
-
-    return response.result
+    return transformResult(response.result)
   }
 
   async inject(facts: Fact[]): Promise<InjectResponse> {
@@ -85,6 +76,24 @@ export class Session {
 
     return response.result
   }
+}
+
+/**
+ * Set the kind property so that it is easier to distinguish the response types.
+ */
+function transformResult(
+  result: ResultResponse | QuestionResponse
+): ResultResponse | QuestionResponse {
+  if (typeof (result as ResultResponse).result !== 'undefined') {
+    result.kind = 'result'
+  } else if (typeof (result as QuestionResponse).question !== 'undefined') {
+    result.kind = 'question'
+  }
+
+  if (result.kind === 'result') {
+    result.facts = result.result.map(res => new Fact(res))
+  }
+  return result
 }
 
 export interface SessionOptions {
@@ -122,6 +131,7 @@ export interface QuestionResponse {
 
 export interface ResultResponse {
   kind: 'result'
+  facts: Fact[]
   result: ResultFact[]
   stats: any // TODO: add types
   sid: string
