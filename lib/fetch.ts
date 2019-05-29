@@ -30,20 +30,14 @@ export enum HttpCodes {
   GatewayTimeout = 504
 }
 
-export interface FetchResponse<T> {
-  statusCode: number
-  result: T | null
-  response: Response
-}
-
 export class Fetch {
   static rawRequest = fetch
 
   static async get<T>(
     input: RequestInfo,
     init?: RequestInit | undefined
-  ): Promise<FetchResponse<T>> {
-    const options = Object.assign({}, init, { method: 'GET' })
+    ): Promise<FetchResponse<T>> {
+      const options = Object.assign({}, init, { method: 'GET' })
     return Fetch._processResponse<T>(fetch(input, options))
   }
 
@@ -51,10 +45,11 @@ export class Fetch {
     input: RequestInfo,
     body: any,
     init?: RequestInit | undefined
-  ): Promise<FetchResponse<T>> {
-    const options = Object.assign({}, init, {
+    ): Promise<FetchResponse<T>> {
+      const options = Object.assign({}, init, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      headers: {'content-type': 'application/json'}
     })
     return Fetch._processResponse<T>(fetch(input, options))
   }
@@ -77,4 +72,10 @@ export class Fetch {
       response
     }
   }
+}
+
+export interface FetchResponse<T> {
+  statusCode: number
+  result: T | null
+  response: Response
 }
