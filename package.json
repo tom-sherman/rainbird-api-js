@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "parcel example/index.html"
   },
   "author": {
     "name": "Tom Sherman",
@@ -17,12 +18,14 @@
     "url": "git+https://github.com/tom-sherman/rainbird-api-js.git"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "fetch-ponyfill": "^6.0.2",
     "isomorphic-base64": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.0.2",
     "dotenv": "^6.0.0",
+    "parcel": "^1.12.3",
     "typescript": "^3.4.5"
   },
   "keywords": [
