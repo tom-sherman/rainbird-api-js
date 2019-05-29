@@ -7,13 +7,13 @@ export class Session {
   readonly apiDomain: string
   private _id?: string
   private _kmId: string
-  private apiKey: string
+  private _apiKey: string
 
   constructor({ apiKey, context, apiDomain, kmId }: SessionOptions) {
     this.context = context
     this.apiDomain = apiDomain
     this._kmId = kmId
-    this.apiKey = apiKey
+    this._apiKey = apiKey
   }
 
   get id(): string | undefined {
@@ -24,16 +24,10 @@ export class Session {
     return this._kmId
   }
 
-  private ensureId(): void {
-    if (typeof this.id === 'undefined') {
-      throw new Error('TODO: handle error')
-    }
-  }
-
   async start(): Promise<StartResponse> {
     const response = await Fetch.get<StartResponse>(
       `${this.apiDomain}/start/${this._kmId}`,
-      { headers: { Authorization: `Basic ${btoa(`${this.apiKey}:`)}` } }
+      { headers: { Authorization: `Basic ${btoa(`${this._apiKey}:`)}` } }
     )
     if (!response.result) {
       throw new Error('TODO: handle error')
@@ -41,6 +35,27 @@ export class Session {
 
     this._id = response.result.id
     return response.result
+  }
+
+  async query(options: QueryOptions): Promise<RespondResponse> {
+    if (!this.id) {
+      throw new Error('Session id is not defined. Call Session.Start first.')
+    }
+
+    if (!options.object && !options.subject) {
+      throw new Error('Rainbird queries require either subject, object, or both.')
+    }
+
+    const response = await Fetch.post<RespondResponse>(
+      `${this.apiDomain}/${this.id}/query`,
+      options
+    )
+
+    if (!response.result) {
+      throw new Error('TODO: handle error')
+    }
+
+    return transformResult(response.result)
   }
 
   async respond(answers: Answer[]): Promise<RespondResponse> {
@@ -79,7 +94,8 @@ export class Session {
 }
 
 /**
- * Set the kind property so that it is easier to distinguish the response types.
+ * A helper function to set the kind property on the response object as well
+ * as add a `facts` array if the response is a result.
  */
 function transformResult(
   result: ResultResponse | QuestionResponse
@@ -101,6 +117,12 @@ export interface SessionOptions {
   apiDomain: string
   kmId: string
   apiKey: string
+}
+
+interface QueryOptions {
+  subject?: string
+  relationship: string
+  object?: string
 }
 
 export interface StartResponse {
