@@ -43,7 +43,9 @@ export class Session {
     }
 
     if (!options.object && !options.subject) {
-      throw new Error('Rainbird queries require either subject, object, or both.')
+      throw new Error(
+        'Rainbird queries require either subject, object, or both.'
+      )
     }
 
     const response = await Fetch.post<RespondResponse>(
@@ -58,14 +60,14 @@ export class Session {
     return transformResult(response.result)
   }
 
-  async respond(answers: Answer[]): Promise<RespondResponse> {
+  async respond(answers: Answer | Answer[]): Promise<RespondResponse> {
     if (!this.id) {
       throw new Error('Session id is not defined. Call Session.Start first.')
     }
 
     const response = await Fetch.post<RespondResponse>(
-      `${this.apiDomain}/${this.id}/respond`,
-      { answers }
+      `${this.apiDomain}/${this.id}/response`,
+      { answers: Array.isArray(answers) ? answers : [answers] }
     )
 
     if (!response.result) {
