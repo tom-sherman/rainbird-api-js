@@ -2,10 +2,13 @@
   "name": "rainbird-api",
   "version": "1.3.0",
   "description": "Promise based wrapper for the Rainbird API.",
+  "source": "lib/index.ts",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "microbundle",
     "start": "parcel example/index.html"
   },
   "author": {
@@ -25,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^12.0.2",
     "dotenv": "^6.0.0",
+    "microbundle": "^0.11.0",
     "parcel": "^1.12.3",
     "typescript": "^3.4.5"
   },
@@ -32,5 +36,8 @@
     "rainbird",
     "ai",
     "api"
+  ],
+  "files": [
+    "dist/"
   ]
 }
