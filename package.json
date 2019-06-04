@@ -9,7 +9,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "microbundle",
-    "start": "parcel example/index.html"
+    "start": "parcel example/index.html",
+    "test": "jest"
   },
   "author": {
     "name": "Tom Sherman",
@@ -26,10 +27,13 @@
     "isomorphic-base64": "^1.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.13",
     "@types/node": "^12.0.2",
     "dotenv": "^6.0.0",
+    "jest": "^24.8.0",
     "microbundle": "^0.11.0",
     "parcel": "^1.12.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
   "keywords": [
