@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fact can set cf to below 100 1`] = `
+Fact {
+  "cf": 80,
+  "object": "o",
+  "relationship": "r",
+  "subject": "s",
+}
+`;
+
+exports[`fact should construct without cf 1`] = `
+Fact {
+  "cf": 100,
+  "object": "o",
+  "relationship": "r",
+  "subject": "s",
+}
+`;
